@@ -11,11 +11,11 @@ Lua is a simple scripting language that everyone can learn even with no programm
 ## Current Features
 - A GUI for script management
 - Supporting the standard lua libraries
-
+- Low-Level API `lc_*` with currently only filesystem support
 
 ## Upcoming Features:
 - `.bundle` a xml-based format for combing lua and html,css for a more customizable UI
-- Low-Level API `lc_*` for accessing ImGui window creation,hotkeys and more(haven't been implemented yet!)
+- LCAPI ImGui window creation,hotkeys 
 
 ## License
 Tohars LuaCut is licensed under the GPL 3, see LICENSE for more infomation.

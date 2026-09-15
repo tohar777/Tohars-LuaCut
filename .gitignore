@@ -1,4 +1,6 @@
 build/
 *.exe
+*.fla
+*.swf
 imgui.ini
 include/desktop.ini

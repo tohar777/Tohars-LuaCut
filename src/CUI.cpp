@@ -10,7 +10,7 @@ void CUI::Init(int w, int h)
 void CUI::MainMenuBar(){
     if(ImGui::BeginMainMenuBar()){
 
-        ImGui::Text("Tohars LuaCut 0.1");
+        ImGui::Text("Tohars LuaCut 0.2");
         if(ImGui::BeginMenu("File")){
             if(ImGui::MenuItem("Import")){
                 ImGuiFileDialog::Instance()->OpenDialog("Choose a Script to add", "Choose File", ".lua, .bundle");
@@ -30,7 +30,7 @@ void CUI::MainMenuBar(){
 
         if(ImGui::BeginMenu("Help")){
             if(ImGui::MenuItem("About LuaCut")){
-                MessageBoxA(nullptr,"Tohars LuaCut 1.0(C) 2026(C) \n copyright under the GPL 3.0","About Tohars LuaCut 1.0",MB_OK | MB_ICONINFORMATION);
+                MessageBoxA(nullptr,"Tohars LuaCut 0.2(C) 2026(C) \n copyright under the GPL 3.0","About Tohars LuaCut 1.0",MB_OK | MB_ICONINFORMATION);
             }
             ImGui::EndMenu();
         }
@@ -67,7 +67,7 @@ void CUI::MainUI(){
     for(const auto& path : paths){
         scriptsItems.push_back(path.c_str());
     }
-    ImGui::Combo("Fruits", &current_item, scriptsItems.data(), scriptsItems.size());
+    ImGui::Combo("Scripts", &current_item, scriptsItems.data(), scriptsItems.size());
     if(ImGui::Button("Run Selected Script")){
         lua.RunScript(paths[current_item].c_str());
     }
