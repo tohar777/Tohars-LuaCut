@@ -77,3 +77,6 @@ void CLuaAPI::RunString(const char* code){
         lua_pop(L, 1);
     }
 }
+void CLuaAPI::StopScript(){
+
+}

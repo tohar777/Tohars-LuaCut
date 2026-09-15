@@ -45,6 +45,11 @@ void CUI::MainMenuBar(){
                 std::string filePath = ImGuiFileDialog::Instance()->GetFilePathName();
                 paths.push_back(filePath);
                 printf("Selected: %s\n", filePath.c_str());
+                FILE* file = fopen(filePath.c_str(),"r");
+                char buff[4098];
+                fgets(buff, 100, file);
+                textEditor.SetText(buff);
+                fclose(file); 
             }
 
             ImGuiFileDialog::Instance()->Close();
@@ -80,6 +85,10 @@ void CUI::MainUI(){
     ImGui::SetWindowSize(ImVec2(500,h-19));
     if (ImGui::BeginTabBar("Tab Bar")) {
         if (ImGui::BeginTabItem("Text Editor")) {
+            if(ImGui::Button("New")){
+                textEditor.SetText("");
+            }
+            ImGui::SameLine();
             if(ImGui::Button("Save")){
             
             }
@@ -88,9 +97,15 @@ void CUI::MainUI(){
             
             }
             ImGui::SameLine();
-            if(ImGui::Button("Run")){
+            if (ImGui::Button("Run"))
+            {
                 lua.RunString(textEditor.GetText().c_str());
             }
+            /*if (ImGui::Button("Stop"))
+            {
+                lua.StopScript();
+            }*/
+
             textEditor.Render(
                 "LuaEditor",
                 ImGui::GetContentRegionAvail()
