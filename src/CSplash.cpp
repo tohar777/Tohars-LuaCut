@@ -149,7 +149,8 @@ void CSplash::LCRun(){
     );
 
     auto start = std::chrono::steady_clock::now();
-
+    int w,h;
+    glfwGetWindowSize(window,&w,&h);
     while(!glfwWindowShouldClose(window)){
 
         auto now = std::chrono::steady_clock::now();
@@ -157,7 +158,7 @@ void CSplash::LCRun(){
         float elapsed =
             std::chrono::duration<float>(now - start).count();
 
-        if(elapsed >= 1.0f)
+        if(elapsed >= 3.0f)
             break;
         ImGui_ImplOpenGL2_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -173,7 +174,7 @@ void CSplash::LCRun(){
             {
                 ImGui::SetWindowPos(ImVec2(0,0));
 
-                ImGui::SetWindowSize(ImVec2(500,250));
+                ImGui::SetWindowSize(ImVec2(w,h));
 
                 ImGui::Image(
                     (ImTextureID)(intptr_t)logo,
@@ -202,7 +203,7 @@ void CSplash::LCRun(){
     ImGui_ImplOpenGL2_Shutdown();
     ImGui_ImplGlfw_Shutdown();
 
-    ImGui::DestroyContext();
+    ImGui::DestroyContext(NULL);
 
     glfwDestroyWindow(window);
     window = nullptr;

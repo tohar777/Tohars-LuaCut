@@ -14,8 +14,8 @@ int CApplication::LCCreateWindow()
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     window = glfwCreateWindow(
-        400,
-        500,
+        800,
+        480,
         "Tohars LuaCut",
         nullptr,
         nullptr
@@ -27,7 +27,20 @@ int CApplication::LCCreateWindow()
         glfwTerminate();
         return -1;
     }
+    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 
+    if(monitor)
+    {
+        const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+
+        int windowWidth = 500;
+        int windowHeight = 270;
+
+        int x = (mode->width - windowWidth) / 2;
+        int y = (mode->height - windowHeight) / 2;
+
+        glfwSetWindowPos(window, x, y);
+    }
     glfwMakeContextCurrent(window);
 
     return 0;

@@ -1,5 +1,2 @@
 lc_messageBox("Hello World")
 lc_listDir(".")
-lc_uiBegin("Hello")
-lc_uiText("Hello")
-lc_uiEnd()

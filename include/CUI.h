@@ -7,6 +7,7 @@
 #include <imgui_impl_opengl2.h>
 #include <imgui_impl_glfw.h>
 #include <ImGuiFileDialog.h>
+#include <TextEditor.h>
 #include <windows.h>
 #include "CLuaAPI.h"
 class CUI{
@@ -15,6 +16,7 @@ class CUI{
         int current_item = 0;
         std::vector<const char*> scriptsItems;
         std::vector<std::string> paths;
+        TextEditor textEditor;
         CLuaAPI lua;
     public:
         void Init(int w,int h);

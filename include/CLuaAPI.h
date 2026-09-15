@@ -25,4 +25,5 @@ class CLuaAPI{
     public:
         void InitAPI();
         void RunScript(const char* path);
+        void RunString(const char* code);
 };

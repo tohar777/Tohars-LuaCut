@@ -5,6 +5,7 @@ void CUI::Init(int w, int h)
     this->w = w;
     this->h = h;
     lua.InitAPI();
+    textEditor.SetLanguage(TextEditor::Language::Lua());
 }
 
 void CUI::MainMenuBar(){
@@ -55,7 +56,7 @@ void CUI::MainUI(){
    ImGui::Begin("Main",0,ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground);
    {
     ImGui::SetWindowPos(ImVec2(0,19));
-    ImGui::SetWindowSize(ImVec2(w,h-19));
+    ImGui::SetWindowSize(ImVec2((w/2)-100,h-19));
     if(ImGui::Button("Create New")){
 
     }
@@ -70,6 +71,37 @@ void CUI::MainUI(){
     ImGui::Combo("Scripts", &current_item, scriptsItems.data(), scriptsItems.size());
     if(ImGui::Button("Run Selected Script")){
         lua.RunScript(paths[current_item].c_str());
+    }
+   }
+   ImGui::End();
+   ImGui::Begin("Editor",0,ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground);
+   {
+    ImGui::SetWindowPos(ImVec2(300,19));
+    ImGui::SetWindowSize(ImVec2(500,h-19));
+    if (ImGui::BeginTabBar("Tab Bar")) {
+        if (ImGui::BeginTabItem("Text Editor")) {
+            if(ImGui::Button("Save")){
+            
+            }
+            ImGui::SameLine();
+            if(ImGui::Button("Save As...")){
+            
+            }
+            ImGui::SameLine();
+            if(ImGui::Button("Run")){
+                lua.RunString(textEditor.GetText().c_str());
+            }
+            textEditor.Render(
+                "LuaEditor",
+                ImGui::GetContentRegionAvail()
+            );
+            ImGui::EndTabItem();
+        }
+        if (ImGui::BeginTabItem("Settings")) {
+            ImGui::SeparatorText("General Settings");
+            ImGui::EndTabItem();
+        }
+        ImGui::EndTabBar();
     }
    }
    ImGui::End();

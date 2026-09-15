@@ -69,3 +69,11 @@ void CLuaAPI::RunScript(const char* path){
         lua_pop(L, 1);
     }
 }
+void CLuaAPI::RunString(const char* code){
+
+    if(luaL_dostring(L, code) != LUA_OK)
+    {
+        printf("[CLAPI]Lua error: %s\n", lua_tostring(L, -1));
+        lua_pop(L, 1);
+    }
+}
