@@ -20,10 +20,9 @@ private:
     static int lc_cd(lua_State* L);
     static int lc_mkdir(lua_State* L);
     static int lc_list(lua_State* L);
-    // UI
-    static int lc_uiBegin(lua_State* L);
-    static int lc_uiText(lua_State* L);
-    static int lc_uiEnd(lua_State* L);
+    // logging
+    static int lc_log(lua_State* L);
+    static int lc_error(lua_State* L);
 public:
     lua_State* L;
 

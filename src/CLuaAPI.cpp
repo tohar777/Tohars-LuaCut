@@ -28,6 +28,16 @@ int CLuaAPI::lc_mkdir(lua_State* L){
     }
     return 0;
 }
+int CLuaAPI::lc_log(lua_State* L){
+    const char* text = luaL_checkstring(L,1);
+    printf("[LCAPI-LOG]%s \n",text);
+    return 0;
+}
+int CLuaAPI::lc_error(lua_State* L){
+    const char* text = luaL_checkstring(L,1);
+    printf("[LCAPI-ERROR]%s \n",text);
+    return 0;
+}
 int CLuaAPI::lc_list(lua_State* L)
 {
     const char* directory = luaL_checkstring(L, 1);
@@ -59,6 +69,12 @@ void CLuaAPI::InitAPI(){
 
     lua_pushcfunction(L, lc_list);
     lua_setglobal(L, "lc_listDir");
+
+    lua_pushcfunction(L, lc_log);
+    lua_setglobal(L, "lc_log");
+
+    lua_pushcfunction(L, lc_error);
+    lua_setglobal(L, "lc_error");
 }
 
 void CLuaAPI::RunScript(const char* path){
