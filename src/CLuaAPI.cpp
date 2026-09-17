@@ -4,7 +4,16 @@ namespace fs = std::filesystem;
 
 int CLuaAPI::lc_messageBox(lua_State* L){
     const char* message = luaL_checkstring(L,1);
-    MessageBoxA(nullptr,message,"LuaCut MessageBox",MB_OK);
+    const char* type = luaL_checkstring(L,2);
+    if(strcmp(type,"info")==0){
+        MessageBoxA(nullptr,message,"LuaCut MessageBox",MB_ICONINFORMATION | MB_OK);
+    }
+    if(strcmp(type,"warn")==0){
+        MessageBoxA(nullptr,message,"LuaCut MessageBox",MB_ICONWARNING | MB_OK);
+    }
+    if(strcmp(type,"error")==0){
+        MessageBoxA(nullptr,message,"LuaCut MessageBox",MB_ICONERROR | MB_OK);
+    }
     return 0;
 }
 
@@ -46,15 +55,13 @@ int CLuaAPI::lc_list(lua_State* L)
     }
     return 0;
 }
+
+
 void CLuaAPI::InitAPI(){
 
     L = luaL_newstate();
 
-    luaopen_base(L);
-    luaopen_table(L);
-    luaopen_io(L);
-    luaopen_string(L);
-    luaopen_math(L);
+    luaL_openlibs(L);
 
     /* LuaCut API */
 

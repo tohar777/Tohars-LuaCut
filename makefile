@@ -4,7 +4,7 @@ CC = gcc
 CXXFLAGS = -std=c++17 -Wall -Wextra -Iinclude
 CFLAGS = -Wall -Wextra -Iinclude
 
-LDFLAGS = -Llib -lopengl32 -llua -lglfw3 -lgdi32 -lwinmm
+LDFLAGS = -Llib -lopengl32 -llibluajit-5.1 -lglfw3 -lgdi32 -lwinmm 
 
 TARGET = luacut.exe
 

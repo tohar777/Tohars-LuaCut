@@ -6,11 +6,13 @@ extern "C"
 #include <lauxlib.h>
 #include <lualib.h>
 #include <windows.h>
+#include <string.h>
 }
 
 #include <iostream>
 #include <filesystem>
 #include <imgui.h>
+#include <uiohook.h>
 
 class CLuaAPI{
 private:
@@ -23,11 +25,9 @@ private:
     // logging
     static int lc_log(lua_State* L);
     static int lc_error(lua_State* L);
+    static int lc_keyPressed(lua_State* L);
 public:
     lua_State* L;
-
-    bool scriptRunning = false;
-    bool stopScript = false;
 
 public:
     void InitAPI();
